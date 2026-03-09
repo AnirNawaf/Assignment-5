@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
-<div class="bg-white p-8 rounded shadow w-80 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-8 w-[420px]">
+        
+        <div class="text-center mb-6">
+            <img src="img/github.png" class="w-16 mx-auto mb-3">
+            <h1 class="text-xl font-semibold">GitHub Issues Tracker</h1>
+            <p class="text-gray-500 text-sm">Sign in to manage your issues</p>
+        </div>
 
-<h1 class="text-2xl font-bold mb-2">GitHub Issues Tracker</h1>
-<p class="text-gray-500 mb-5">Sign in to continue</p>
+        <label class="text-sm font-medium">Username</label>
+        <input id="username" type="text" placeholder="Enter Username"
+            class="w-full border rounded-lg px-3 py-2 mt-1 mb-1">
+        <p class="text-xs text-blue-600 mb-3">Default: admin</p>
 
-<input id="username" type="text" placeholder="Username" class="border p-2 w-full mb-3 rounded">
+        <label class="text-sm font-medium">Password</label>
+        <input id="password" type="password" placeholder="Enter Password"
+            class="w-full border rounded-lg px-3 py-2 mt-1 mb-1">
+        <p class="text-xs text-blue-600 mb-4">Default: admin123</p>
 
-<input id="password" type="password" placeholder="Password" class="border p-2 w-full mb-3 rounded">
+        <button onclick="login()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg font-medium"> Sign In</button>
 
-<button onclick="login()" class="bg-blue-500 text-white px-4 py-2 w-full rounded"> Sign In </button>
+        <div class="flex items-center my-4">
+            <hr class="flex-grow">
+            <span class="mx-2 text-gray-400 text-sm">OR</span>
+            <hr class="flex-grow">
+        </div>
 
-<p class="text-sm mt-3 text-gray-500">Demo: admin / admin123</p>
+        <div class="bg-gray-100 p-4 rounded-lg text-center text-sm">
+            <p class="text-gray-500 mb-2">Demo Credentials:</p>
+            <p><b>Username:</b> admin</p>
+            <p><b>Password:</b> admin123</p>
+        </div>
 
-</div>
+    </div>
 
-<script>
+    <script>
 
-function login(){
+        function login() {
 
-const username = document.getElementById("username").value;
-const password = document.getElementById("password").value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-if(username==="admin" && password==="admin123"){
+            if (username === "admin" && password === "admin123") {
 
-window.location.href="Issues.html";
+                window.location.href = "Issues.html";
 
-}
-else{
+            }
+            else {
 
-alert("Invalid login");
+                alert("Invalid login");
 
-}
+            }
 
-}
+        }
 
-</script>
+    </script>
 
 </body>
 </html>
