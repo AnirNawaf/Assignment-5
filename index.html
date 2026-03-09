@@ -2,12 +2,13 @@
 <html>
 <head>
     <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
-    <div class="bg-white shadow-lg rounded-xl p-8 w-[420px]">
+    <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-[420px] mx-4">
         
         <div class="text-center mb-6">
             <img src="img/github-logo.png" class="w-16 mx-auto mb-3">
@@ -25,7 +26,9 @@
             class="w-full border rounded-lg px-3 py-2 mt-1 mb-1">
         <p class="text-xs text-blue-600 mb-4">Default: admin123</p>
 
-        <button onclick="login()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg font-medium"> Sign In</button>
+        <button onclick="login()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg font-medium">
+            Sign In
+        </button>
 
         <div class="flex items-center my-4">
             <hr class="flex-grow">
