@@ -44,13 +44,16 @@
                 </div>
             </div>
 
-            <div class="flex gap-4 text-sm">
+            <div class="flex gap-6 text-sm">
                 <span class="text-green-600 ">● Open</span>
                 <span class="text-purple-600">● Closed</span>
             </div>
         </div>
 
         <div id="issuesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        <div id="loadingSpinner" class="hidden flex justify-center items-center py-10">
+    <div class="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+</div>
 
     </div>
 
@@ -98,10 +101,10 @@
         const API = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
         let allIssues = [];
 
-        function setActiveButton(activeButton) {
+        function setActivebtn(actvbtn) {
             const buttons = [document.getElementById("btnAll"), document.getElementById("btnOpen"), document.getElementById("btnClosed")];
             buttons.forEach(btn => {
-                if (btn === activeButton) {
+                if (btn === actvbtn) {
                     btn.classList.add("bg-purple-600", "text-white");
                     btn.classList.remove("bg-gray-200", "text-gray-700");
                 } else {
@@ -112,28 +115,35 @@
         }
 
         async function loadAll(button) {
-            setActiveButton(button);
+
+            setActivebtn(button);
+             showLoading();
+
             if (allIssues.length === 0) {
                 const res = await fetch(API);
                 const data = await res.json();
                 allIssues = data.data;
+                
             }
-            displayIssues(allIssues);
+
+            Issue(allIssues);
+
+            hideLoading();
         }
 
         function loadOpen(button) {
-            setActiveButton(button);
+            setActivebtn(button);
             const openIssues = allIssues.filter(issue => issue.status === "open");
-            displayIssues(openIssues);
+            Issue(openIssues);
         }
 
         function loadClosed(button) {
-            setActiveButton(button);
+            setActivebtn(button);
             const closedIssues = allIssues.filter(issue => issue.status === "closed");
-            displayIssues(closedIssues);
+            Issue(closedIssues);
         }
 
-        function displayIssues(issues) {
+        function Issue(issues) {
             document.getElementById("issueCount").innerText = issues.length;
             const container = document.getElementById("issuesContainer");
             container.innerHTML = "";
@@ -196,7 +206,7 @@
             const text = document.getElementById("searchInput").value;
             const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
             const data = await res.json();
-            displayIssues(data.data);
+            Issue(data.data);
         }
 
         function openModal(issue) {
@@ -238,6 +248,21 @@
             const btnAll = document.getElementById("btnAll");
             loadAll(btnAll);
         };
+
+
+        function showLoading(){
+    document.getElementById("loadingSpinner").classList.remove("hidden");
+    document.getElementById("issuesContainer").classList.add("hidden");
+}
+
+function hideLoading(){
+    document.getElementById("loadingSpinner").classList.add("hidden");
+    document.getElementById("issuesContainer").classList.remove("hidden");
+}
+
+
+
+
     </script>
 
 </body>
